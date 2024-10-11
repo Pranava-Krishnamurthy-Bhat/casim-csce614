@@ -97,7 +97,7 @@ class BranchPredictorPAg {
                 pht[phtIdx] = taken? (pred? 3 : (pht[phtIdx]+1)) : (pred? (pht[phtIdx]-1) : 0); //2-bit saturating counter
             } else {
                 // Please implement Automaton 3 for update
-                pht[phtIdx] = taken ? ( pht[phtIdx]%2 ? (pred ? 3 : 3) : ( pred ? 3 : 1) ) : ( pht[phtIdx]%2 ? (pred ? 2 : 0) : (pred ? 0 : 0) ) 
+                pht[phtIdx] = taken ? ( (pht[phtIdx]%2==1) ? (pred ? 3 : 3) : ( pred ? 3 : 1) ) : ( (pht[phtIdx]%2==1) ? (pred ? 2 : 0) : (pred ? 0 : 0) ) 
 
             }
             bhsr[bhsrIdx] = ((bhsr[bhsrIdx] << 1) & histMask ) | (taken? 1: 0); //we apply phtMask here, dependence is further away
